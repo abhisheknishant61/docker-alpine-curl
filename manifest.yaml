@@ -1,0 +1,12 @@
+image: abhishek138/test:latest
+manifests:
+  -
+    image: abhishek138/test:amd64-latest
+    platform:
+      architecture: amd64
+      os: linux
+  -
+    image: abhishek138/test:arm64-latest
+    platform:
+      architecture: arm64
+      os: linux
