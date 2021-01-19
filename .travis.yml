@@ -13,5 +13,7 @@ before_script:
   - docker buildx create --use --name mybuilder
 
 script:
-  - docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD};
-  - travis_wait 40 docker buildx build --platform linux/amd64,linux/arm64 -t abhishek138/docker-alpine2:$TRAVIS_TAG -t abhishek138/docker-alpine2:latest --push . 2> /dev/null;
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then
+    docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD};
+    travis_wait 40 docker buildx build --platform linux/amd64,linux/arm64 -t abhishek138/docker-alpine3:$TRAVIS_TAG -t abhishek138/docker-alpine3:latest --push . 2> /dev/null;
+    fi
