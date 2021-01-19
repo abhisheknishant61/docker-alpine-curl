@@ -14,6 +14,7 @@ before_script:
 
 script:
   - if [ "$TRAVIS_BRANCH" = "master" ] && [ -z $TRAVIS_TAG ]; then
+    echo "Publishing from branch $TRAVIS_BRANCH";
     docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD};
     travis_wait 40 docker buildx build --platform linux/amd64,linux/arm64 -t abhishek138/docker-alpine3:$TRAVIS_TAG -t abhishek138/docker-alpine3:latest --push . 2> /dev/null;
     fi
